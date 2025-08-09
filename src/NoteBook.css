@@ -32,3 +32,32 @@ body {
   margin: 0 auto;
   box-shadow: 0 20px 35px rgba(135, 189, 165, 0.25);
 }
+.writing-page {
+  width: 465px;
+  height: 690px;
+  background-image: url("/page.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  image-rendering: pixelated;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.writing-page textarea {
+  width: 82%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  font: 18px/1 "Courier New", monospace;
+  color: #000000;
+  padding-top: 69px;
+  padding-left: 43px;
+}
+
+.writing-page textarea::placeholder {
+  color: #7a7a7a;
+  opacity: 0.7;
+}
