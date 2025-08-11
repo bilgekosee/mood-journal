@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import "./NoteBook.css";
+import MoodPicker from "./MoodPicture";
 
 const frames = ["/1.kapak.png", "/2.kapak.png", "/3.kapak.png", "/4.kapak.png"];
 
@@ -65,6 +66,7 @@ export default function Notebook() {
             onChange={handleChange}
             autoFocus
           />
+          <MoodPicker onSelect={(id) => console.log("Seçilen mood:", id)} />
         </div>
       </div>
     );
