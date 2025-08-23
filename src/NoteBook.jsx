@@ -22,11 +22,15 @@ export default function Notebook() {
   const [text, setText] = useState("");
   const [mood, setMood] = useState(3);
   const [saving, setSaving] = useState(false);
+  const [ai, setAi] = useState(null);
+  const [analyzing, setAnalyzing] = useState(false);
   const animRef = useRef(null);
 
   useEffect(() => {
-    const saved = localStorage.getItem("diaryText");
-    if (saved) setText(saved);
+    const savedText = localStorage.getItem("diaryText");
+    if (savedText) setText(savedText);
+    const savedMood = localStorage.getItem("diaryMood");
+    if (savedMood) setMood(Number(savedMood));
   }, []);
 
   const handleChange = (e) => {
@@ -65,16 +69,50 @@ export default function Notebook() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [showWriter]);
+  async function handleAnalyze() {
+    if (!text.trim()) return alert("Önce bir şeyler yaz.");
+    try {
+      setAnalyzing(true);
+      console.log("analyzing…");
+      const res = await fetch("http://localhost:5050/api/analyze", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data?.analysis) {
+        console.error("analyze error:", data);
+        return alert("analiz hatası: " + (data?.error || "bilinmiyor"));
+      }
+      console.log("analysis result:", data.analysis);
+      setAi(data.analysis);
+    } catch (err) {
+      console.error(err);
+      alert("analiz edilemedi");
+    } finally {
+      setAnalyzing(false);
+    }
+  }
+
   async function handleSave() {
     if (!text.trim()) return alert("Metin boş olamaz.");
     try {
       setSaving(true);
-      const data = await saveEntry(text, mood);
-      console.log("saved:", data);
-      alert("Kaydedildi");
+
+      const saved = await saveEntry(text, mood);
+
+      const res = await fetch("http://localhost:5050/api/analyze", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text }),
+      });
+      const { analysis } = await res.json();
+
+      console.log("AI Analysis:", analysis);
+      setAi(analysis);
     } catch (err) {
       console.error(err);
-      alert("Kaydedilemedi");
+      alert("kaydedilemedi ");
     } finally {
       setSaving(false);
     }
@@ -91,12 +129,41 @@ export default function Notebook() {
             autoFocus
           />
 
-          <MoodPicker onSelect={(id) => console.log("Seçilen mood:", id)} />
+          <MoodPicker
+            value={mood}
+            onChange={(id) => {
+              setMood(id);
+              localStorage.setItem("diaryMood", String(id));
+            }}
+          />
           <div className="actions">
             <button onClick={handleSave} disabled={saving}>
               {saving ? "Kaydediliyor..." : "Kaydet"}
             </button>
+            <button onClick={handleAnalyze} disabled={analyzing}>
+              {analyzing ? "Analiz ediliyor..." : "Analiz Et"}
+            </button>
           </div>
+          {ai && (
+            <div className="ai-card" style={{ marginTop: 10 }}>
+              <div>
+                <b>Duygu:</b> {ai.mood} ({ai.score})
+              </div>
+              {ai.tags?.length ? (
+                <div>
+                  <b>Etiketler:</b> {ai.tags.join(", ")}
+                </div>
+              ) : null}
+              {ai.suggestions?.length ? (
+                <ul>
+                  {ai.suggestions.map((s, i) => (
+                    <li key={i}>{s}</li>
+                  ))}
+                </ul>
+              ) : null}
+              {ai.summary && <p style={{ opacity: 0.8 }}>{ai.summary}</p>}
+            </div>
+          )}
         </div>
       </div>
     );
