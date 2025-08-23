@@ -117,6 +117,12 @@ export default function Notebook() {
       setSaving(false);
     }
   }
+  function handleClear() {
+    setText("");
+    setMood(3);
+    setAi(null);
+    localStorage.removeItem("diaryText");
+  }
 
   if (showWriter) {
     return (
@@ -142,6 +148,9 @@ export default function Notebook() {
             </button>
             <button onClick={handleAnalyze} disabled={analyzing}>
               {analyzing ? "Analiz ediliyor..." : "Analiz Et"}
+            </button>
+            <button onClick={handleClear} className="clear-button">
+              Temizle
             </button>
           </div>
           {ai && (

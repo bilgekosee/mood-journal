@@ -13,6 +13,8 @@ body {
   background-position: center;
   image-rendering: pixelated;
   overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .book-container {
@@ -57,6 +59,9 @@ body {
   color: #000000;
   padding-top: 58px;
   padding-left: 66px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .writing-page textarea::placeholder {
@@ -69,6 +74,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 6px;
+  margin-bottom: 5px;
 }
 .actions button {
   font-family: "Courier New", monospace;
@@ -81,4 +88,17 @@ body {
 .actions button:disabled {
   opacity: 0.6;
   cursor: default;
+}
+
+.clear-button {
+  background: #d10c0c !important;
+}
+
+.ai-card {
+  width: auto;
+  height: auto;
+  background-color: rgba(255, 255, 255, 0.334);
+  padding: 10px;
+  border-radius: 10px;
+  color: #464646;
 }
