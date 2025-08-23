@@ -3,7 +3,7 @@
 Pixel art defter tasarımı ile kişisel duygu günlüğü.  
 Kullanıcıların yazdıkları günlükler sadece saklanmaz, aynı zamanda AI (Gemini) tarafından analiz edilerek duygular, etiketler, öneriler ve özetlerle desteklenir.  
 
-**Not:** Tüm defter ve ikon tasarımları tarafımdan [Pixel Studio](https://pixelstudioapp.com/) kullanılarak çizilmiştir.  
+**Not:** Tüm defter ve ikon tasarımları tarafımdan Pixel Studio kullanılarak çizilmiştir. Çizimlerime pinterestten ulaşabilirsiniz [Pixel-art](https://tr.pinterest.com/bilgekoosee/pixel-art/)  
 
 ---
 
@@ -34,7 +34,7 @@ Kullanıcıların yazdıkları günlükler sadece saklanmaz, aynı zamanda AI (G
 A pixel-art themed personal mood journal.  
 Users can write their daily entries, which are then analyzed by AI (Gemini API) to generate emotional summaries, sentiment scores, tags, suggestions, and short overviews.
 
-> **Note:** All notebook and icon designs were created by me using [Pixel Studio](https://pixelstudioapp.com/).
+> **Note:** All notebook and icon designs were created by me using Pixel Studio. You can find my illustrations on Pinterest [Pixel-art](https://tr.pinterest.com/bilgekoosee/pixel-art/)  .
 
 ---
 
