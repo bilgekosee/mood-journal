@@ -31,6 +31,7 @@ const entrySchema = new mongoose.Schema(
   },
   { timestamps: true, versionKey: false }
 );
+
 const Entry = mongoose.model("Entry", entrySchema);
 
 function safeParseJSON(str) {
