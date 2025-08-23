@@ -1,12 +1,86 @@
-# React + Vite
+# Mood Journal  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Pixel art defter tasarımı ile kişisel duygu günlüğü.  
+Kullanıcıların yazdıkları günlükler sadece saklanmaz, aynı zamanda AI (Gemini) tarafından analiz edilerek duygular, etiketler, öneriler ve özetlerle desteklenir.  
 
-Currently, two official plugins are available:
+**Not:** Tüm defter ve ikon tasarımları tarafımdan [Pixel Studio](https://pixelstudioapp.com/) kullanılarak çizilmiştir.  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Demo  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+[Demo Videosunu İzle](https://youtu.be/ZPaeU_NcxN0)
+
+---
+
+## Özellikler  
+
+- Pixel art defter, tıklandığında açılan animasyonlu sayfa  
+- Günlük yazma alanı, otomatik saklama ve temizleme özelliği  
+- Mood Picker ile duyguların görselleştirilmesi  
+- AI analizi (Gemini API üzerinden):  
+  - Duyguyu özetleme  
+  - -1 ile +1 arasında skor verme  
+  - Etiketler üretme  
+  - Öneriler sunma  
+  - Kısa özet oluşturma  
+- MongoDB Atlas üzerinde verilerin güvenle saklanması  
+- Temizle butonu ile kolay sıfırlama  
+
+---
+
+# Mood Journal
+
+A pixel-art themed personal mood journal.  
+Users can write their daily entries, which are then analyzed by AI (Gemini API) to generate emotional summaries, sentiment scores, tags, suggestions, and short overviews.
+
+> **Note:** All notebook and icon designs were created by me using [Pixel Studio](https://pixelstudioapp.com/).
+
+---
+
+## Demo
+
+[Watch the Demo Video](https://youtu.be/ZPaeU_NcxN0)
+
+---
+
+## Features
+
+- Animated pixel art notebook that opens on click  
+- Journal writing area with autosave and clear functionality  
+- Mood Picker to visualize emotions  
+- AI-powered analysis via Gemini API:
+  - Emotion summarization  
+  - Sentiment scoring (between -1 and +1)  
+  - Tag generation  
+  - Suggestion generation  
+  - Short summary creation  
+- Secure data storage using MongoDB Atlas  
+- "Clear" button for easy reset  
+
+---
+
+## Kurulum / Installation
+
+### 1. Repo'yu klonla / Clone the repository
+
+```bash
+git clone https://github.com/bilgekosee/mood-journal.git
+cd mood-journal
+
+
+### 2. Sunucuyu Başlat / Start the Server
+cd server
+npm install
+
+### .env dosyası oluşturun / Create a .env file:
+PORT=5050
+MONGODB_URI=<your MongoDB Atlas URI>
+GEMINI_API_KEY=<your Gemini API key>
+
+
+###  Uygulamayı başlat / Start the frontend
+cd ..
+npm install
+npm run dev
+
