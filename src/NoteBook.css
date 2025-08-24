@@ -102,3 +102,23 @@ body {
   border-radius: 10px;
   color: #464646;
 }
+@media (max-width: 510px) {
+  .notebook-img {
+    width: 380px;
+  }
+}
+@media (max-width: 390px) {
+  .notebook-img {
+    width: 300px;
+  }
+}
+@media (max-width: 430px) {
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .ai-card {
+    padding: 40px;
+  }
+}
